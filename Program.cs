@@ -10,9 +10,9 @@ foreach (string i in first)
     foreach (string j in second)
     {
         string combined = i + j;
-        byte[] data = Encoding.ASCII.GetBytes(combined);
+        byte[] data = Encoding.UTF8.GetBytes(combined);
         SHA512 shaM = SHA512.Create();
-        byte[] hash = shaM.ComputeHash(data); 
+        byte[] hash = shaM.ComputeHash(data);
         var hashString = string.Join("", BitConverter.ToString(hash).Replace("-", "").ToLower().Reverse());
         var hashTakingOutMax = hashString[16..(hashString.Length - 16)];
         var indexStart = 0;
@@ -26,5 +26,3 @@ foreach (string i in first)
 }
 // FLAG{Find-the-hash-in-trash!!}
 Console.WriteLine(string.Join("", dict.Select(x => x.Value)));
-
-
