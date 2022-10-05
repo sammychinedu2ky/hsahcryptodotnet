@@ -14,10 +14,9 @@ foreach (string i in first)
         SHA512 shaM = SHA512.Create();
         byte[] hash = shaM.ComputeHash(data); 
         var hashString = string.Join("", BitConverter.ToString(hash).Replace("-", "").ToLower().Reverse());
-        var hashTakingOutMax = hashString[16..(hashString.Length - 16)];
-        var localOutput = output;
+        var hashTakingOutMax = hashString[15..(hashString.Length - 15)];
         var indexStart = 0;
-        while (localOutput.IndexOf(hashTakingOutMax, indexStart) is { } index)
+        while (output.IndexOf(hashTakingOutMax, indexStart) is { } index)
         {
             if (index < 0) break;
             indexStart = index + hashTakingOutMax.Length;
