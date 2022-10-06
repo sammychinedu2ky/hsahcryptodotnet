@@ -1,9 +1,9 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 string output = File.ReadAllText("./input.txt");
-List<string> first = Enumerable.Range(0, 127).Select(x => ((char)x).ToString()).ToList();
-List<string> second = Enumerable.Range(0, 127).Select(x => ((char)x).ToString()).ToList();
-second.Add("");
+var first = Enumerable.Range(0, 1_2_7).Select(x => ((char)x).ToString());
+var second = Enumerable.Range(0, 1_2_7).Select(x => ((char)x).ToString());
+second = second.Append("");
 SortedDictionary<int, string> dict = new();
 foreach (string i in first)
 {
