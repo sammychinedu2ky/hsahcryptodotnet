@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-string output =  File.ReadAllText("./input.txt");
+string output = File.ReadAllText("./input.txt");
 List<string> first = Enumerable.Range(0, 127).Select(x => ((char)x).ToString()).ToList();
 List<string> second = Enumerable.Range(0, 127).Select(x => ((char)x).ToString()).ToList();
 second.Add("");
@@ -13,8 +13,10 @@ foreach (string i in first)
         byte[] data = Encoding.UTF8.GetBytes(combined);
         SHA512 shaM = SHA512.Create();
         byte[] hash = shaM.ComputeHash(data);
-        var hashString = string.Join("", BitConverter.ToString(hash).Replace("-", "").ToLower().Reverse());
-        var hashTakingOutMax = hashString[16..(hashString.Length - 16)];
+        // var hashString = string.Join("", BitConverter.ToString(hash).Replace("-", "").ToLower().Reverse());
+        // var hashTakingOutMax = hashString[16..(hashString.Length - 16)];
+        var hashString = BitConverter.ToString(hash).Replace("-", "").ToLower();
+        var hashTakingOutMax = string.Join("", hashString[16..(hashString.Length - 16)].Reverse());
         var indexStart = 0;
         while (output.IndexOf(hashTakingOutMax, indexStart) is { } index)
         {
